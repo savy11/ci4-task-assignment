@@ -25,11 +25,9 @@ class TaskController extends ResourceController
         if ($this->request->isAJAX() || $this->request->getHeaderLine('Content-Type') === 'application/json') {
             return $this->respond($tasks);
         }
-        // Web: Render list view
         return view('tasks/index', ['tasks' => $tasks]);
     }
 
-    // NEW: Show create form (web)
     public function showCreateForm()
     {
         return view('tasks/create');
@@ -72,7 +70,6 @@ class TaskController extends ResourceController
         return redirect()->back()->with('error', 'Failed to create task');
     }
 
-    // NEW: Show edit form (web)
     public function showEditForm($id = null)
     {
         $userId = session()->get('user_id');
@@ -100,7 +97,6 @@ class TaskController extends ResourceController
         if ($this->request->isAJAX() || $this->request->getHeaderLine('Content-Type') === 'application/json') {
             return $this->respond($task);
         }
-        // Web: Render single view
         return view('tasks/view', ['task' => $task]);
     }
 

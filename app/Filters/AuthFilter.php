@@ -15,13 +15,11 @@ class AuthFilter implements FilterInterface
         if (!$session->get('user_id')) {
             return redirect()->to('/login')->with('error', 'Please login first.');
         }
-        // NEW: Explicit continue (fixes the "none returned" error)
         return null;
     }
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null): mixed
     {
-        // No after logic needed
-        return $response;  // Good practice: Always return response in after()
+        return $response;
     }
 }

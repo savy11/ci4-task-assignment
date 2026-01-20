@@ -18,7 +18,6 @@ class AuthController extends ResourceController
         $this->userModel = new UserModel();
     }
 
-    // NEW: Show register form (web)
     public function showRegisterForm()
     {
         return view('auth/register', ['errors' => session()->getFlashdata('errors') ?? []]);
@@ -30,14 +29,13 @@ class AuthController extends ResourceController
             'username' => 'required|min_length[3]|max_length[20]|is_unique[users.username]',
             'email'    => 'required|valid_email|is_unique[users.email]',
             'password' => 'required|min_length[8]',
-            'password_confirm' => 'required|matches[password]',  // NEW: Confirm field
+            'password_confirm' => 'required|matches[password]',
         ];
 
         if (!$this->validate($rules)) {
             if ($this->request->isAJAX() || $this->request->getHeaderLine('Content-Type') === 'application/json') {
                 return $this->failValidationErrors($this->validator->getErrors());
             }
-            // Web: Flash errors and redirect back
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
@@ -63,7 +61,6 @@ class AuthController extends ResourceController
         return redirect()->back()->with('error', 'Failed to register user');
     }
 
-    // NEW: Show login form (web)
     public function showLoginForm()
     {
         return view('auth/login', ['errors' => session()->getFlashdata('errors') ?? []]);
