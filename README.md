@@ -8,7 +8,7 @@ Git
 ## Installation
 
 1. Clone the repo:
-git clone https://github.com/grok-ai/ci4-task-app.git
+git clone https://github.com/savy11/ci4-task-assignment
 cd ci4-task-app
 
 2. Install dependencies (CI4 core is included; no extras needed):
